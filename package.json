@@ -1,7 +1,16 @@
 {
-  "name": "Ubutu_Tuner",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Tiago Abreu Laibacas <tiago.abreu.laibacas@gmail.com>",
-  "license": "MIT"
+  "name": "ubuntu-tuner",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "author": "Laibytes",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
 }
