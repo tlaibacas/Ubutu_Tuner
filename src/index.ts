@@ -1,5 +1,7 @@
-import inquirer from "inquirer";
-import { exec } from "child_process";
 import { displayWelcomeMessage } from "./ui/ui";
+import { showMainMenu } from "./menu/showMainmenu";
 
-displayWelcomeMessage();
+(async () => {
+  displayWelcomeMessage();
+  await showMainMenu();
+})();

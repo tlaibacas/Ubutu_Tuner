@@ -26,7 +26,7 @@ export function displayWelcomeMessage() {
     })
   );
   console.log(
-    chalk.blue(
+    chalk.white(
       "A tool to help you optimize and customize your Ubuntu experience."
     )
   );
