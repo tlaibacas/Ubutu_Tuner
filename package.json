@@ -1,23 +1,25 @@
 {
   "name": "ubuntu-tuner",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "author": "Laibytes",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "tsstart": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts"
   },
   "devDependencies": {
-    "@types/clear": "^0.1.4",
     "@types/figlet": "^1.7.0",
     "@types/node": "^24.1.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "boxen": "^8.0.1",
     "chalk": "^5.4.1",
+    "figlet": "^1.8.2",
     "inquirer": "^12.8.2",
     "ora": "^8.2.0",
     "sudo-prompt": "^9.2.1"
