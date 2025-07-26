@@ -24,13 +24,13 @@ export async function showMainMenu(): Promise<void> {
 async function handleAction(action: string): Promise<void> {
   switch (action) {
     case "update":
-      console.log(chalk.yellow("→ Checking for updates..."));
+      console.log(chalk.hex("#E95420")("→ Checking for updates..."));
       break;
     case "config":
-      console.log(chalk.yellow("→ Applying configuration tweaks..."));
+      console.log(chalk.hex("#E95420")("→ Applying configuration tweaks..."));
       break;
     case "all":
-      console.log(chalk.yellow("→ Running full system tune..."));
+      console.log(chalk.hex("#E95420")("→ Running full system tune..."));
       break;
     case "exit":
       console.log(chalk.gray("Exiting Ubuntu Tuner... 👋"));
