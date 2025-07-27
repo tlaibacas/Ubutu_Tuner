@@ -1,7 +1,8 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
+import { checkUpdates } from "../actions/checkUpdates";
 
-export async function showMainMenu(): Promise<void> {
+export async function showMainMenu(sudoPassword: string): Promise<void> {
   console.log();
 
   const answers = await inquirer.prompt([
@@ -18,13 +19,16 @@ export async function showMainMenu(): Promise<void> {
     },
   ]);
 
-  await handleAction(answers.action);
+  await handleAction(answers.action, sudoPassword);
 }
 
-async function handleAction(action: string): Promise<void> {
+async function handleAction(
+  action: string,
+  sudoPassword: string
+): Promise<void> {
   switch (action) {
     case "update":
-      console.log(chalk.hex("#E95420")("→ Checking for updates..."));
+      await checkUpdates(sudoPassword);
       break;
     case "config":
       console.log(chalk.hex("#E95420")("→ Applying configuration tweaks..."));
