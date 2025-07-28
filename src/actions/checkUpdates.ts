@@ -1,8 +1,6 @@
 import ora from "ora";
 import chalk from "chalk";
 import { spawn } from "child_process";
-import { showMainMenu } from "../menu/showMainmenu";
-import { runApp } from "..";
 
 export async function execSudoCommand(
   command: string,

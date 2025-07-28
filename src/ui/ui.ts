@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import ora from "ora";
 import figlet from "figlet";
 import boxen from "boxen";
 import packageJson from "../../package.json";
