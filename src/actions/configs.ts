@@ -57,13 +57,6 @@ async function enableUFW(sudoPassword: string) {
   const spinner = ora("🔐 Configuring UFW and hardening firewall...").start();
 
   try {
-    const ufwConfig = Object.entries(configs.ufw.configs)
-      .map(([key, value]) => `${key} = ${value}`)
-      .join("\n");
-
-    const tempFilePath = path.join(os.tmpdir(), "ufw.conf");
-    fs.writeFileSync(tempFilePath, ufwConfig.trim());
-
     await execConfigCommand(`ufw --force reset`, sudoPassword);
     await execConfigCommand(`ufw default deny incoming`, sudoPassword);
     await execConfigCommand(`ufw default allow outgoing`, sudoPassword);
