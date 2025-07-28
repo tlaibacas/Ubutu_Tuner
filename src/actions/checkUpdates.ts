@@ -218,4 +218,20 @@ async function cleanCache(sudoPassword: string): Promise<void> {
   } catch (err) {
     spinnerLogs.fail(chalk.red("Failed to remove old system logs."));
   }
+  const spinnerDeborphan = ora(
+    chalk.white("🧹 Removing orphaned packages with deborphan...")
+  ).start();
+
+  try {
+    await execSudoCommand(
+      `deborphan | xargs -r sudo apt-get -y remove --purge`,
+      sudoPassword
+    );
+    spinnerDeborphan.succeed(
+      chalk.hex("#E95420")("Orphaned packages removed.")
+    );
+  } catch (err) {
+    spinnerDeborphan.fail(chalk.red("Failed to remove orphaned packages."));
+    throw err;
+  }
 }
