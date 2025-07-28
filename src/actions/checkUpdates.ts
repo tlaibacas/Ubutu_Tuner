@@ -1,6 +1,8 @@
 import ora from "ora";
 import chalk from "chalk";
 import { spawn } from "child_process";
+import { showMainMenu } from "../menu/showMainmenu";
+import { runApp } from "..";
 
 export async function execSudoCommand(
   command: string,
@@ -177,4 +179,5 @@ async function cleanCache(sudoPassword: string): Promise<void> {
     spinnerSnap.fail(chalk.red("Failed to clean Snap cache."));
     throw err;
   }
+  await runApp();
 }
