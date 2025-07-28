@@ -169,4 +169,53 @@ async function cleanCache(sudoPassword: string): Promise<void> {
     spinnerSnap.fail(chalk.red("Failed to clean Snap cache."));
     throw err;
   }
+
+  const spinnerJournal = ora(
+    chalk.white("🧹 Cleaning systemd journal logs older than 100MB...")
+  ).start();
+  try {
+    await execSudoCommand("journalctl --vacuum-size=100M", sudoPassword);
+    spinnerJournal.succeed(
+      chalk.hex("#E95420")("Systemd journal logs cleaned.")
+    );
+  } catch (err) {
+    spinnerJournal.fail(chalk.red("Failed to clean systemd journal logs."));
+    throw err;
+  }
+
+  const spinnerKernels = ora(
+    chalk.white("🧹 Removing old kernels and unused packages...")
+  ).start();
+  try {
+    await execSudoCommand("apt-get autoremove --purge -y", sudoPassword);
+    spinnerKernels.succeed(chalk.hex("#E95420")("Old kernels removed."));
+  } catch (err) {
+    spinnerKernels.fail(chalk.red("Failed to remove old kernels."));
+    throw err;
+  }
+
+  const spinnerThumbnails = ora(
+    chalk.white("🧹 Cleaning cached thumbnails...")
+  ).start();
+  try {
+    await execSudoCommand("rm -rf ~/.cache/thumbnails/*", sudoPassword);
+    spinnerThumbnails.succeed(
+      chalk.hex("#E95420")("Cached thumbnails cleaned.")
+    );
+  } catch (err) {
+    spinnerThumbnails.fail(chalk.red("Failed to clean cached thumbnails."));
+  }
+
+  const spinnerLogs = ora(
+    chalk.white("🧹 Removing system logs older than 30 days...")
+  ).start();
+  try {
+    await execSudoCommand(
+      `find /var/log -type f -mtime +30 -exec rm -f {} +`,
+      sudoPassword
+    );
+    spinnerLogs.succeed(chalk.hex("#E95420")("Old system logs removed."));
+  } catch (err) {
+    spinnerLogs.fail(chalk.red("Failed to remove old system logs."));
+  }
 }

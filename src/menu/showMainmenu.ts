@@ -14,7 +14,8 @@ export async function showMainMenu(sudoPassword: string): Promise<void> {
       choices: [
         { name: "🔄  Check for system updates", value: "update" },
         { name: "⚙️  Apply recommended settings", value: "config" },
-        { name: "📦  Run everything (update + config)", value: "all" },
+        { name: "📦  Install recommended software", value: "software" },
+        { name: "🚀  Run everything", value: "all" },
         { name: "🚪  Exit", value: "exit" },
       ],
     },
@@ -33,6 +34,11 @@ async function handleAction(
       break;
     case "config":
       await setConfigs(sudoPassword);
+      break;
+    case "software":
+      console.log(
+        chalk.yellow("Software installation is not implemented yet.")
+      );
       break;
     case "all":
       await checkUpdates(sudoPassword);
