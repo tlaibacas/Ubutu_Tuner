@@ -41,8 +41,6 @@ export async function execSudoCommand(
 }
 
 export async function checkUpdates(sudoPassword: string): Promise<void> {
-  console.log();
-
   try {
     await updateFirmware(sudoPassword);
 
@@ -69,7 +67,7 @@ export async function checkUpdates(sudoPassword: string): Promise<void> {
 
 async function updateFirmware(sudoPassword: string): Promise<void> {
   const spinner = ora(
-    chalk.hex("#E95420")("🔌 Checking for firmware updates...")
+    chalk.white("🔌 Checking for firmware updates...")
   ).start();
   try {
     await execSudoCommand(
@@ -85,9 +83,7 @@ async function updateFirmware(sudoPassword: string): Promise<void> {
 }
 
 async function updateApt(sudoPassword: string): Promise<void> {
-  const spinner = ora(
-    chalk.hex("#E95420")("📦 Updating APT packages...")
-  ).start();
+  const spinner = ora(chalk.white("📦 Updating APT packages...")).start();
   try {
     await execSudoCommand(
       "apt update && apt upgrade -y && apt autoremove -y",
@@ -101,9 +97,7 @@ async function updateApt(sudoPassword: string): Promise<void> {
 }
 
 async function updateSnaps(sudoPassword: string): Promise<void> {
-  const spinner = ora(
-    chalk.hex("#E95420")("🔄 Updating Snap packages...")
-  ).start();
+  const spinner = ora(chalk.white("🔄 Updating Snap packages...")).start();
   try {
     await execSudoCommand("snap refresh", sudoPassword);
     spinner.succeed(chalk.hex("#E95420")("Snaps updated."));
@@ -114,9 +108,7 @@ async function updateSnaps(sudoPassword: string): Promise<void> {
 }
 
 async function updateFlatpak(sudoPassword: string): Promise<void> {
-  const spinner = ora(
-    chalk.hex("#E95420")("📦 Updating Flatpak packages...")
-  ).start();
+  const spinner = ora(chalk.white("📦 Updating Flatpak packages...")).start();
   try {
     await execSudoCommand("flatpak update -y", sudoPassword);
     spinner.succeed(chalk.hex("#E95420")("Flatpaks updated."));
@@ -127,9 +119,7 @@ async function updateFlatpak(sudoPassword: string): Promise<void> {
 }
 
 async function updateKernel(sudoPassword: string): Promise<void> {
-  const spinner = ora(
-    chalk.hex("#E95420")("🧬 Checking for kernel updates...")
-  ).start();
+  const spinner = ora(chalk.white("🧬 Checking for kernel updates...")).start();
   try {
     await execSudoCommand(
       "apt install --install-recommends linux-generic -y",
@@ -146,7 +136,7 @@ async function updateKernel(sudoPassword: string): Promise<void> {
 
 async function cleanCache(sudoPassword: string): Promise<void> {
   const spinner = ora(
-    chalk.hex("#E95420")(
+    chalk.white(
       "🧹 Cleaning cache and removing unused files for APT and Flatpak..."
     )
   ).start();
@@ -167,7 +157,7 @@ async function cleanCache(sudoPassword: string): Promise<void> {
   }
 
   const spinnerSnap = ora(
-    chalk.hex("#E95420")("🧹 Cleaning old Snap versions...")
+    chalk.white("🧹 Cleaning old Snap versions...")
   ).start();
   try {
     await execSudoCommand(
@@ -179,5 +169,4 @@ async function cleanCache(sudoPassword: string): Promise<void> {
     spinnerSnap.fail(chalk.red("Failed to clean Snap cache."));
     throw err;
   }
-  await runApp();
 }

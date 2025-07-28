@@ -1,6 +1,6 @@
 {
   "name": "ubuntu-tuner",
-  "version": "0.2.6 alpha",
+  "version": "0.3.0 alpha",
   "main": "dist/index.js",
   "author": "Laibytes",
   "license": "MIT",

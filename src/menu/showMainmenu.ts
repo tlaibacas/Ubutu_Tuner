@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import { checkUpdates } from "../actions/checkUpdates";
+import { setConfigs } from "../actions/configs";
 
 export async function showMainMenu(sudoPassword: string): Promise<void> {
   console.log();
@@ -31,10 +32,11 @@ async function handleAction(
       await checkUpdates(sudoPassword);
       break;
     case "config":
-      console.log(chalk.hex("#E95420")("→ Applying configuration tweaks..."));
+      await setConfigs(sudoPassword);
       break;
     case "all":
-      console.log(chalk.hex("#E95420")("→ Running full system tune..."));
+      await checkUpdates(sudoPassword);
+      await setConfigs(sudoPassword);
       break;
     case "exit":
       console.log(chalk.gray("Exiting Ubuntu Tuner... 👋"));
