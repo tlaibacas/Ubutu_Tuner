@@ -1,0 +1,30 @@
+{
+  "apt": [
+    "git",
+    "curl",
+    "wget",
+    "zsh",
+    "neovim",
+    "tmux",
+    "htop",
+    "build-essential",
+    "unzip",
+    "openssh-client",
+    "ufw"
+  ],
+  "snap": [
+    "ngrok",
+    "httpie",
+    "multipass",
+    "aws-cli"
+  ],
+  "flatpak": [
+    "com.visualstudio.code",
+    "com.getpostman.Postman",
+    "org.mozilla.firefox",
+    "com.brave.Browser",
+    "md.obsidian.Obsidian",
+    "com.github.tchx84.Flatseal"
+  ]
+}
+
