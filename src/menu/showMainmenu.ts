@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import { checkUpdates } from "../actions/checkUpdates";
 import { setConfigs } from "../actions/configs";
+import { installNodeWithNVM, installSoftware } from "../actions/getSoftware";
 
 export async function showMainMenu(sudoPassword: string): Promise<void> {
   console.log();
@@ -36,13 +37,14 @@ async function handleAction(
       await setConfigs(sudoPassword);
       break;
     case "software":
-      console.log(
-        chalk.yellow("Software installation is not implemented yet.")
-      );
+      await installSoftware(sudoPassword);
+      await installNodeWithNVM(sudoPassword);
       break;
     case "all":
       await checkUpdates(sudoPassword);
       await setConfigs(sudoPassword);
+      await installSoftware(sudoPassword),
+        await installNodeWithNVM(sudoPassword);
       break;
     case "exit":
       console.log(chalk.gray("Exiting Ubuntu Tuner... 👋"));

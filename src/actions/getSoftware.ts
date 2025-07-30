@@ -1,4 +1,4 @@
-import getSoftwareData from "../actions/getSoftware.json";
+import getSoftwareData from "../actions/getSoftwareList.json";
 import ora from "ora";
 import chalk from "chalk";
 import { spawn, exec } from "child_process";
@@ -62,14 +62,14 @@ export async function installSoftware(sudoPassword: string): Promise<void> {
       await execSudoCommand(`flatpak install -y ${pkg}`, sudoPassword);
     }
 
-    spinner.succeed(chalk.green("Software installed successfully."));
+    spinner.succeed(chalk.hex("#E95420")("Software installed successfully."));
   } catch (error) {
     spinner.fail(chalk.red("Failed to install software."));
     throw error;
   }
 }
 
-export async function installNodeWithNVM(): Promise<void> {
+export async function installNodeWithNVM(sudoPassword: string): Promise<void> {
   const spinner = ora("🚀 Installing Node.js via NVM...").start();
 
   try {
@@ -83,7 +83,7 @@ export async function installNodeWithNVM(): Promise<void> {
     await execAsync(`yarn global add eslint typescript npm-check-updates serve nodemon ts-node zx
 `);
     spinner.succeed(
-      chalk.green("Node.js and Yarn installed successfully via NVM.")
+      chalk.hex("#E95420")("Node.js and Yarn installed successfully via NVM.")
     );
   } catch (error) {
     spinner.fail(chalk.red("Failed to install Node.js via NVM."));

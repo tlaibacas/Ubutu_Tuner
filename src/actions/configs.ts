@@ -4,7 +4,7 @@ import chalk from "chalk";
 import fs from "fs";
 import path from "path";
 import os from "os";
-import configs from "./configs.json";
+import configs from "./configList.json";
 
 export function execConfigCommand(
   command: string,
