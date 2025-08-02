@@ -13,15 +13,8 @@
     "ufw",
     "docker.io"
   ],
-  "snap": [
-    "ngrok",
-    "httpie",
-    "multipass",
-    "discord",
-    "vlc"
-  ],
+  "snap": ["ngrok", "httpie", "multipass", "discord", "vlc"],
   "flatpak": [
-    "com.visualstudio.code",
     "com.getpostman.Postman",
     "org.mozilla.firefox",
     "com.brave.Browser",
@@ -31,4 +24,3 @@
     "com.slack.Slack"
   ]
 }
-
